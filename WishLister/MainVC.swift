@@ -22,7 +22,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.delegate = self
         tableView.dataSource = self
         
-        generateTestData()
+        // generateTestData()
         attemptFetch()
         
     }
@@ -82,6 +82,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
         let priceSort = NSSortDescriptor(key: "price", ascending: true)
         let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        let typeSort = NSSortDescriptor(key: "toItemType.type", ascending: true)
         
         if segment.selectedSegmentIndex == 0 {
             fetchRequest.sortDescriptors = [dateSort]
@@ -89,6 +90,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             fetchRequest.sortDescriptors = [priceSort]
         } else if segment.selectedSegmentIndex == 2 {
             fetchRequest.sortDescriptors = [titleSort]
+        } else if segment.selectedSegmentIndex == 3{
+            fetchRequest.sortDescriptors = [typeSort]
         }
 
 
@@ -156,23 +159,24 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         }
     }
     
-    func generateTestData() {
-        
-        let item = Item(context: context)
-        item.title = "New MacBook Pro"
-        item.price = 1800
-        item.details = "I need a better and faster machine to continue my coding journey. I am sick of the spinning beach ball!"
-        let item2 = Item(context: context)
-        item2.title = "Wireless Bose Headphones"
-        item2.price = 300
-        item2.details = "Definitely too expensive for headphones. But that noise reducing tech is awesome and definitely handy!"
-        let item3 = Item(context: context)
-        item3.title = "Tesla Type S"
-        item3.price = 110000
-        item3.details = "I have got to get me one of these! When my ship comes in, I am going straight for this bad boy!"
-        
-        ad.saveContext()
-    }
-    
-}
+//    func generateTestData() {
+//        
+//        let item = Item(context: context)
+//        item.title = "New MacBook Pro"
+//        item.price = 1800
+//        item.details = "I need a better and faster machine to continue my coding journey. I am sick of the spinning beach ball!"
+//        let item2 = Item(context: context)
+//        item2.title = "Wireless Bose Headphones"
+//        item2.price = 300
+//        item2.details = "Definitely too expensive for headphones. But that noise reducing tech is awesome and definitely handy!"
+//        let item3 = Item(context: context)
+//        item3.title = "Tesla Type S"
+//        item3.price = 110000
+//        item3.details = "I have got to get me one of these! When my ship comes in, I am going straight for this bad boy!"
+//        
+//        ad.saveContext()
+//    }
+//    
+//}
 
+}

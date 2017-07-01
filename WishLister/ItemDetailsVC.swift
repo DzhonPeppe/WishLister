@@ -15,10 +15,14 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBOutlet weak var titleField: CustomTextField!
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var detailsField: CustomTextField!
+    @IBOutlet weak var itemTypePicker: UIPickerView!
+    @IBOutlet weak var selector: UISegmentedControl!
+    
     @IBOutlet weak var thumbImg: UIImageView!
     
     
     var stores = [Store]()
+    var types = [ItemType]()
     var itemToEdit: Item?
     var imagePicker: UIImagePickerController!
 
@@ -33,6 +37,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         storePicker.dataSource = self
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        
         
         
 //        let store = Store(context: context)
@@ -50,25 +55,50 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
 //        
 //        ad.saveContext()
         getStores()
+//        
+//        let types = ItemType(context: context)
+//        types.type = "Electronics"
+//        let types2 = ItemType(context: context)
+//        types2.type = "Toys"
+//        let types3 = ItemType(context: context)
+//        types3.type = "Appliances"
+//        let types4 = ItemType(context: context)
+//        types4.type = "Cars"
+//        let types5 = ItemType(context: context)
+//        types5.type = "Real Estate"
+//        let types6 = ItemType(context: context)
+//        types6.type = "Vacations"
+//        let types7 = ItemType(context: context)
+//        types7.type = "Household Goods"
+//        
+//        ad.saveContext()
+        getTypes()
         
         if itemToEdit != nil {
             loadItemData()
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let store = stores[row]
-        return store.name
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return stores.count
+        if component == 0 {
+            return stores.count
+        }
+        return types.count
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
-        return 1
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            let storesRow = stores[row]
+            return storesRow.name
+        }
+        let typesRow = types[row]
+        return typesRow.type
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // updated when selected
@@ -78,6 +108,16 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         let fetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
         do {
             self.stores = try context.fetch(fetchRequest)
+            self.storePicker.reloadAllComponents()
+        } catch {
+            // handle the error
+        }
+    }
+    
+    func getTypes() {
+        let fetchRequest: NSFetchRequest<ItemType> = ItemType.fetchRequest()
+        do {
+            self.types = try context.fetch(fetchRequest)
             self.storePicker.reloadAllComponents()
         } catch {
             // handle the error
@@ -108,8 +148,14 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         if let details = detailsField.text {
             item.details = details
         }
+       
+        
         
         item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
+        ad.saveContext()
+        navigationController?.popViewController(animated: true)
+        
+        item.toItemType = types[itemTypePicker.selectedRow(inComponent: 0)]
         ad.saveContext()
         navigationController?.popViewController(animated: true)
     }
@@ -119,6 +165,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             titleField.text = item.title
             priceField.text = "\(item.price)"
             detailsField.text = item.details
+            
             
             thumbImg.image = item.toImage?.image as? UIImage
             

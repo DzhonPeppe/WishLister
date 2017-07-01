@@ -31,6 +31,7 @@
                                     <segment title="Newest"/>
                                     <segment title="Price"/>
                                     <segment title="Title"/>
+                                    <segment title="Category"/>
                                 </segments>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -151,7 +152,7 @@
             </objects>
             <point key="canvasLocation" x="1076" y="134.48275862068968"/>
         </scene>
-        <!--Add / Edit-->
+        <!--Item DetailsVC-->
         <scene sceneID="sAc-Lu-noo">
             <objects>
                 <viewController id="hYt-vd-FVb" customClass="ItemDetailsVC" customModule="WishLister" customModuleProvider="target" sceneMemberID="viewController">
@@ -176,7 +177,7 @@
                                     <action selector="addImage:" destination="hYt-vd-FVb" eventType="touchUpInside" id="vfI-cQ-3ns"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mg2-Q8-TQP" customClass="CustomTextField" customModule="WishLister" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mg2-Q8-TQP" customClass="CustomTextField" customModule="WishLister" customModuleProvider="target">
                                 <rect key="frame" x="124" y="82" width="235" height="40"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -186,42 +187,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zq3-nd-WiC" customClass="CustomTextField" customModule="WishLister" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zq3-nd-WiC" customClass="CustomTextField" customModule="WishLister" customModuleProvider="target">
                                 <rect key="frame" x="124" y="132" width="235" height="40"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3KD-q0-LBf"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="oIw-JM-XLP"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="enb-xq-tS1" customClass="CustomTextField" customModule="WishLister" customModuleProvider="target">
-                                <rect key="frame" x="16" y="182" width="343" height="60"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="2Ue-Js-NU0"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Store" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmq-YF-iAK">
-                                <rect key="frame" x="140.5" y="354" width="94" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="BfO-tp-ubQ"/>
-                                    <constraint firstAttribute="height" constant="21" id="CKL-aN-rfM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6m-3K-CnE">
+                            <pickerView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6m-3K-CnE">
                                 <rect key="frame" x="0.0" y="383" width="375" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="13W-GF-PEr"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </pickerView>
+                            <pickerView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROj-Sp-qk6" userLabel="Item Type Picker">
+                                <rect key="frame" x="16" y="360" width="343" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="UDW-RB-nf5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfM-gB-FDe">
                                 <rect key="frame" x="16" y="607" width="343" height="40"/>
@@ -237,43 +229,67 @@
                                     <action selector="savePressed:" destination="hYt-vd-FVb" eventType="touchUpInside" id="dbv-2g-7Mq"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="enb-xq-tS1" customClass="CustomTextField" customModule="WishLister" customModuleProvider="target">
+                                <rect key="frame" x="16" y="182" width="343" height="60"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="erh-XV-Wru"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fVm-zG-28Q">
+                                <rect key="frame" x="41" y="282" width="293" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="CyQ-hz-ncg"/>
+                                    <constraint firstAttribute="height" constant="28" id="YQx-Y2-OWj"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Select Store"/>
+                                    <segment title="Select Item Category"/>
+                                </segments>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="segmentChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="Rii-uY-IQz"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="u6m-3K-CnE" secondAttribute="trailing" id="0VV-ie-arg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZfM-gB-FDe" secondAttribute="trailing" id="4xk-sa-JDy"/>
+                            <constraint firstItem="enb-xq-tS1" firstAttribute="trailing" secondItem="YZU-Yy-cdZ" secondAttribute="trailingMargin" id="52F-bI-Mb1"/>
+                            <constraint firstItem="ROj-Sp-qk6" firstAttribute="top" secondItem="fVm-zG-28Q" secondAttribute="bottom" constant="50" id="AHN-Lv-ZwR"/>
                             <constraint firstItem="ZfM-gB-FDe" firstAttribute="top" secondItem="u6m-3K-CnE" secondAttribute="bottom" constant="8" id="CBR-9z-E2n"/>
+                            <constraint firstItem="fVm-zG-28Q" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leadingMargin" constant="25" id="DEi-WG-zrB"/>
+                            <constraint firstItem="fVm-zG-28Q" firstAttribute="top" secondItem="enb-xq-tS1" secondAttribute="bottom" constant="40" id="FH5-pg-Xpg"/>
+                            <constraint firstItem="ROj-Sp-qk6" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leadingMargin" id="FhS-4q-uYX"/>
                             <constraint firstItem="lLE-6r-CSn" firstAttribute="top" secondItem="9GO-F8-bgf" secondAttribute="bottom" constant="8" id="G4N-wM-6Ci"/>
-                            <constraint firstItem="enb-xq-tS1" firstAttribute="trailing" secondItem="YZU-Yy-cdZ" secondAttribute="trailingMargin" id="Ga1-tZ-E54"/>
                             <constraint firstItem="1nn-mx-qms" firstAttribute="top" secondItem="ZfM-gB-FDe" secondAttribute="bottom" constant="20" id="K8l-22-pWC"/>
-                            <constraint firstItem="u6m-3K-CnE" firstAttribute="top" secondItem="bmq-YF-iAK" secondAttribute="bottom" constant="8" id="Ou0-43-LkP"/>
-                            <constraint firstItem="enb-xq-tS1" firstAttribute="top" secondItem="Zq3-nd-WiC" secondAttribute="bottom" constant="10" id="QeP-Cw-H2n"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fVm-zG-28Q" secondAttribute="trailing" constant="25" id="Nn2-S4-kKL"/>
                             <constraint firstItem="mg2-Q8-TQP" firstAttribute="top" secondItem="9GO-F8-bgf" secondAttribute="bottom" constant="18" id="Rn9-dj-7SF"/>
                             <constraint firstItem="Zq3-nd-WiC" firstAttribute="leading" secondItem="lLE-6r-CSn" secondAttribute="trailing" constant="8" id="SC9-e3-WqD"/>
+                            <constraint firstItem="enb-xq-tS1" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leadingMargin" id="Y0J-mt-NyD"/>
                             <constraint firstItem="ui0-nc-06u" firstAttribute="centerY" secondItem="lLE-6r-CSn" secondAttribute="centerY" id="Z3l-2x-btm"/>
-                            <constraint firstItem="bmq-YF-iAK" firstAttribute="centerX" secondItem="YZU-Yy-cdZ" secondAttribute="centerX" id="ZXt-ek-2Cd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ROj-Sp-qk6" secondAttribute="trailing" id="fRA-Lg-CtL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mg2-Q8-TQP" secondAttribute="trailing" id="gAp-9W-D7q"/>
                             <constraint firstItem="Zq3-nd-WiC" firstAttribute="top" secondItem="mg2-Q8-TQP" secondAttribute="bottom" constant="10" id="gkQ-W0-dlt"/>
+                            <constraint firstItem="fVm-zG-28Q" firstAttribute="centerX" secondItem="YZU-Yy-cdZ" secondAttribute="centerX" id="hEg-qN-e5z"/>
                             <constraint firstItem="u6m-3K-CnE" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leading" id="khs-l4-55q"/>
                             <constraint firstItem="ui0-nc-06u" firstAttribute="centerX" secondItem="lLE-6r-CSn" secondAttribute="centerX" id="km4-lv-YHv"/>
                             <constraint firstItem="lLE-6r-CSn" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leadingMargin" id="m2g-Bz-X4K"/>
                             <constraint firstItem="ZfM-gB-FDe" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leadingMargin" id="mUK-j5-EHH"/>
-                            <constraint firstItem="enb-xq-tS1" firstAttribute="leading" secondItem="YZU-Yy-cdZ" secondAttribute="leadingMargin" id="mxc-Mi-h74"/>
+                            <constraint firstItem="enb-xq-tS1" firstAttribute="top" secondItem="Zq3-nd-WiC" secondAttribute="bottom" constant="10" id="rDa-HJ-BNx"/>
                             <constraint firstItem="Zq3-nd-WiC" firstAttribute="trailing" secondItem="YZU-Yy-cdZ" secondAttribute="trailingMargin" id="rpf-vc-s9R"/>
                             <constraint firstItem="mg2-Q8-TQP" firstAttribute="leading" secondItem="lLE-6r-CSn" secondAttribute="trailing" constant="8" id="uxg-bk-IdA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add / Edit" id="MMv-jp-NcA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Mrs-DM-55T">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="deletePressed:" destination="hYt-vd-FVb" id="meg-Yh-4c3"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="detailsField" destination="enb-xq-tS1" id="0k8-mZ-Zad"/>
+                        <outlet property="itemTypePicker" destination="ROj-Sp-qk6" id="Ofh-Oj-Yan"/>
                         <outlet property="priceField" destination="Zq3-nd-WiC" id="1FZ-Qc-2Fx"/>
+                        <outlet property="selector" destination="fVm-zG-28Q" id="jwy-8h-xfe"/>
                         <outlet property="storePicker" destination="u6m-3K-CnE" id="yLF-Wy-AgF"/>
                         <outlet property="thumbImg" destination="lLE-6r-CSn" id="oUC-I9-XFe"/>
                         <outlet property="titleField" destination="mg2-Q8-TQP" id="6Vs-K1-uRa"/>
